@@ -1,0 +1,182 @@
+const computersElement = document.getElementById("computers");
+const featuresElement = document.getElementById("features");
+const titleElement = document.getElementById("title");
+const descriptionElement = document.getElementById("description");
+const priceElement = document.getElementById("price");
+const imageElement = document.getElementById("computerImage")
+const imageURL = "https://noroff-komputer-store-api.herokuapp.com/"
+let computers = [];
+let features = []; 
+let price=20;
+
+fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
+    .then(response => response.json())
+    .then(data => computers = data)
+    .then(computers => addComputersToList(computers));
+
+const addComputersToList = (computers) => {
+    computers.forEach(c => addComputerToList(c));
+}
+
+const addComputerToList = (computer) => {
+    const computerElement = document.createElement("option");
+    computerElement.value = computer.id;
+    computerElement.appendChild(document.createTextNode(computer.title));
+    computersElement.appendChild(computerElement);
+    featuresElement.innerHTML = computers[0].specs;
+    imageElement.src=imageURL+computers[0].image;
+    priceElement.innerText = computers[0].price+" kr";
+    price=computers[0].price;
+    titleElement.innerText = computers[0].title;
+    descriptionElement.innerText = computers[0].description;
+}
+
+const handleComputerChange = e => {
+    const selectedComputer = computers[e.target.selectedIndex];
+    featuresElement.innerText = selectedComputer.specs;
+    priceElement.innerText = selectedComputer.price;
+    descriptionElement.innerText = selectedComputer.description;
+    titleElement.innerText = selectedComputer.title;
+    priceElement.innerText = selectedComputer.price+" kr";
+    price=selectedComputer.price;
+    imageElement.src=imageURL+selectedComputer.image;
+}
+computersElement.addEventListener("change",handleComputerChange)
+
+let joe = new bank(1000,0,0);
+updateFields();
+
+/**
+ * Cunstructor for bank
+ * @param {number} balance 
+ * @param {number} loan 
+ */
+function bank(balance,loan,pay){
+    this.balance=balance;
+    this.loan=loan;
+    this.pay=pay;
+}
+/**
+ * Returns current balance
+ * @returns number
+ */
+function getBalance(){
+    return joe.balance;
+}
+/**
+ * Adds more money to balance
+ * @param {number} b 
+ */
+function addBalance(b){
+    joe.balance+=b;
+}
+/**
+ * Boolean for checking if there is an existing loan
+ * @returns true||false
+ */
+function hasLoan(){
+    if (joe.loan==0){
+        return false;
+    }return true;
+}
+/**
+ * Return current pay balance
+ * @returns number
+ */
+function getPay(){
+    return joe.pay;
+}
+/**
+ * Increase pay balance with 100kr
+ */
+function work(){
+    joe.pay+=100;
+    updateFields();
+}
+/**
+ * Returns current loan
+ * @returns number
+ */
+function getLoan(){
+    return joe.loan;
+}
+function buy(){
+    if (price<=joe.balance+joe.loan){
+        joe.balance-=price;
+        updateFields();
+        document.getElementById('buyOk').style.visibility='visible';
+        document.getElementById('buyErrors').style.visibility='hidden';
+    }
+    else{
+        document.getElementById('buyOk').style.visibility='hidden';
+        document.getElementById('buyErrors').style.visibility='visible';
+    }
+
+}
+function repay(){
+    if (getPay()==getLoan()){
+        joe.loan = 0;
+        joe.pay = 0;
+        updateFields();
+    }
+    if (getLoan()>getPay()){
+        joe.loan = joe.loan-joe.pay;
+        joe.pay = 0;
+        updateFields();
+    } if (getLoan()<getPay()){
+        let rest = joe.pay-joe.loan;
+        joe.loan = 0;
+        joe.pay=0;
+        joe.balance+=rest;
+        updateFields();
+    }
+}
+function pay() {
+    if (getPay()*0.1==getLoan()){
+        joe.balance+=(getPay()*0.9);
+        joe.pay=0;
+        joe.loan=0;
+        updateFields();
+    }
+    if ((getPay()*0.1)>getLoan()){
+        repay();
+        joe.balance+=joe.pay;
+        joe.pay=0;
+        updateFields();
+    }
+    if (getPay()>0){
+        let payslip=0.9*getPay();
+        joe.balance+=payslip;
+        joe.pay-=payslip;
+        repay();
+        updateFields(); 
+    }
+}
+
+function loan(){
+    let l = prompt("Enter amount");                    
+    let amount = parseInt(l);
+    if (amount>(getBalance()*2)){
+        console.log("Cannot loan this much");
+    } else if (hasLoan()){
+        console.log("You already have loan");
+    }else{
+        joe.loan=amount;
+        document.getElementById('loanDiv').style.visibility='visible';
+        document.getElementById('loanButton').style.visibility='visible';
+        updateFields();
+    }
+}
+
+function updateFields(){
+    if(isNaN(joe.loan)){joe.loan=0;}
+    if(!hasLoan()){document.getElementById('loanDiv').style.visibility='hidden';}
+    if(!hasLoan()){document.getElementById('loanButton').style.visibility='hidden';}
+    document.getElementById('balance_id').textContent = (getLoan()+getBalance())+" kr";
+    document.getElementById('loan_id').textContent = getLoan()+" kr";
+    document.getElementById('pay_id').textContent = getPay()+" kr";
+    document.getElementById('buyErrors').style.visibility='hidden';
+    document.getElementById('buyOk').style.visibility='hidden';
+}
+
+

@@ -1,0 +1,233 @@
+
+:root{
+    --box_color:#efefef;
+
+}
+h1{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    padding-left: 5%;
+}
+h2{
+    text-align: center;
+}
+#computers{
+    font-size:110%;
+    width: 300px;
+    text-align: center;
+}
+
+#computerImage{
+    width: 300px;
+    height: 300px;
+}
+#buyErrors{
+    color:lightsalmon;
+}
+#buyOk{
+    color:lightgreen;
+}
+.buyDiv{
+    text-align: center;
+    margin-top: 105px;
+}
+.storeDiv{
+    width: 400px;
+}
+
+.balanceDiv{
+    display: flex;
+    justify-content: space-between;
+}
+.loanDiv{
+    display: flex;
+    justify-content: space-between;
+}
+.payDiv{
+    display:flex;
+    justify-content: space-between;
+}
+.bankWork{
+    margin-top: 120px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.loanButton {
+    width: 100px;
+    height: 30px;
+    background-color: lightsalmon;
+    border-radius: 10px;
+    border-color: lightsalmon;
+    border-width: 1px;
+    cursor: pointer;
+    margin-top: 105px;
+    margin-left: 95px;
+    
+}
+.repayButton{
+    width: 100px;
+    height: 30px;
+    background-color: lightgreen;
+    border-radius: 10px;
+    border-color:lightgreen;
+    border-width: 1px;
+    cursor: pointer;
+    margin-left: 90px;
+}
+.payButton {
+    width: 100px;
+    height: 30px;
+    background-color: lightyellow;
+    border-radius: 10px;
+    border-color:lightyellow;
+    border-width: 1px;
+    cursor: pointer;
+}
+.workButton {
+    width: 100px;
+    height: 30px;
+    background-color: lightblue;
+    border-radius: 10px;
+    border-color:lightblue;
+    border-width: 1px;
+    cursor: pointer;
+}
+.buyButton {
+    margin-top: 15px;
+    width: 100px;
+    height: 30px;
+    background-color: lightgreen;
+    border-radius: 10px;
+    border-color:lightgreen;
+    border-width: 1px;
+    cursor: pointer;
+}
+
+@media (min-width: 415px) {
+.grid {
+    display: grid;
+    grid-auto-rows: minmax(100px, auto);
+    justify-content: space-evenly;
+    margin:0px;
+    padding: 0px;
+    gap:1%;
+
+}
+header {
+    top: 0;
+    position:sticky;
+    grid-row: 1;
+    grid-column: 1/4;
+    background-color: black;
+    height: 80px;
+}
+.bank {
+    padding-top: 5%;
+    background-color:var(--box_color);
+    grid-column: 1 / 2;
+    grid-row: 2/5;
+    border-radius: 15px;
+    width: 300px;
+    padding: 40px;
+    height: 300px;
+}
+.work {
+    padding-top: 5%;
+    background-color:var(--box_color);
+    grid-column: 2 / 3;
+    grid-row: 2/5;
+    padding: 40px;
+    border-radius: 15px;
+    width: 300px;
+    height: 300px;
+}
+.laptops {
+    padding-top: 5%;
+    padding: 40px;
+    background-color:var(--box_color);
+    grid-column: 3 / 4;
+    grid-row: 2/5;
+    border-radius: 15px;
+    width: 300px;
+    height: 300px;
+}
+.store {
+    padding-top: 5%;
+    padding: 40px;
+    background-color:var(--box_color);
+    grid-column: 1/4;
+    grid-row: 5/8;
+    padding: 40px;
+    width: auto;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    height: 310px;
+}
+footer {
+    grid-column: 1/4;
+    grid-row: 8;
+
+}
+}
+
+@media (max-width: 414px) {
+    .grid {
+        display: grid;
+        grid-auto-rows: minmax(auto, 414px);
+        gap:1%
+    }
+    header {
+        top: 0;
+        margin-top: 50%;
+        grid-column: 1;
+        text-align: center;
+    
+    }
+    .bank {
+        padding-top: 5%;
+        background-color:var(--box_color);
+        grid-column: 1;
+        grid-row: 2;
+        border-radius: 15px;
+        padding: 40px;
+        text-align: center;
+
+    }
+    .work {
+        padding-top: 5%;
+        background-color:var(--box_color);
+        grid-column: 1;
+        grid-row: 3;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+
+    }
+    .laptops {
+        padding-top: 5%;
+        padding: 40px;
+        background-color:var(--box_color);
+        grid-column: 1;
+        grid-row: 4;
+        border-radius: 15px;
+        text-align: center;
+
+    }
+    .store {
+        text-align: center;
+        padding-top: 5%;
+        padding: 40px;
+        background-color:var(--box_color);
+        grid-column: 1;
+        grid-row: 5/7;
+        padding: 40px;
+        border-radius: 15px;
+
+    }
+    footer {
+        grid-column: 1;
+        grid-row: 8;
+    
+    }
+    }
