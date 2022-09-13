@@ -102,7 +102,7 @@ h2{
     cursor: pointer;
 }
 
-@media (min-width: 415px) {
+
 .grid {
     display: grid;
     grid-auto-rows: minmax(100px, auto);
@@ -172,8 +172,8 @@ footer {
     grid-row: 8;
 
 }
-}
 
+/*
 @media (max-width: 414px) {
     .grid {
         display: grid;
@@ -233,4 +233,4 @@ footer {
         grid-row: 8;
     
     }
-    }
+    }*/
