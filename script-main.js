@@ -33,7 +33,7 @@ const addComputerToList = (computer) => {
 
 const handleComputerChange = e => {
     const selectedComputer = computers[e.target.selectedIndex];
-    featuresElement.innerText = selectedComputer.specs;
+    featuresElement.innerHTML =selectedComputer.specs;
     priceElement.innerText = selectedComputer.price;
     descriptionElement.innerText = selectedComputer.description;
     titleElement.innerText = selectedComputer.title;
@@ -43,7 +43,7 @@ const handleComputerChange = e => {
 }
 computersElement.addEventListener("change",handleComputerChange)
 
-let joe = new bank(1000,0,0);
+let joe = new bank(0,0,0);
 updateFields();
 
 /**
@@ -154,12 +154,13 @@ function pay() {
 }
 
 function loan(){
-    let l = prompt("Enter amount");                    
+    
+    let l = prompt("Your maximum loan amount is set to "+getBalance()*2+" kr\nRemember that you can only have one loan at any given time\nEnter amount");                    
     let amount = parseInt(l);
-    if (amount>(getBalance()*2)){
-        console.log("Cannot loan this much");
-    } else if (hasLoan()){
-        console.log("You already have loan");
+    if (hasLoan()){
+        alert("You can only have one loan at any given time, please pay back your current loan...");
+    } else if (amount>(getBalance()*2)){
+        alert("Your maximum loan amount is "+getBalance()*2+" kr..");
     }else{
         joe.loan=amount;
         joe.balance+=joe.loan;
@@ -171,6 +172,7 @@ function loan(){
 
 function updateFields(){
     if(isNaN(joe.loan)){joe.loan=0;}
+    if(isNaN(joe.balance)){joe.balance=0;}
     if(!hasLoan()){document.getElementById('loanDiv').style.visibility='hidden';}
     if(!hasLoan()){document.getElementById('loanButton').style.visibility='hidden';}
     document.getElementById('balance_id').textContent = getBalance()+" kr";
