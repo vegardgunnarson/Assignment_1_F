@@ -136,19 +136,20 @@ function getLoan(){
 function buy(){
     if (price<=getBalance()){
         bank.balance-=price;
-        alert("Thank you for your order, your "+selectedComputer.title+" is now beeing prepered for shipment.\nYour account will be charged shortly.");
+        alert("Thank you for your order, you are now the proud owner of a "+selectedComputer.title+".\nYour account will be charged shortly.");
         updateFields();
-        document.getElementById('buyErrors').style.visibility='hidden';
     }
     else{
-        document.getElementById('buyErrors').style.visibility='visible';
+        alert("Insufficient funds, you need to work harder")
     }
-
 }
 /**
  * Sends all pay to loan, any left overs will be sent to balance
  */
 function repay(){
+    if (getPay()==0){
+        alert("You do not have any untransfered pay, you need to work in order to gain pay");
+    }
     if (getPay()==getLoan()){
         bank.loan = 0;
         bank.pay = 0;
