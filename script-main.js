@@ -8,6 +8,7 @@ const imageURL = "https://noroff-komputer-store-api.herokuapp.com/"
 let computers = [];
 let features = []; 
 let price=20;
+let selectedComputer;
 
 fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
     .then(response => response.json())
@@ -23,6 +24,7 @@ const addComputerToList = (computer) => {
     computerElement.value = computer.id;
     computerElement.appendChild(document.createTextNode(computer.title));
     computersElement.appendChild(computerElement);
+    selectedComputer = computers[0];
     featuresElement.innerHTML = computers[0].specs;
     imageElement.src=imageURL+computers[0].image;
     priceElement.innerText = computers[0].price+" kr";
@@ -32,7 +34,7 @@ const addComputerToList = (computer) => {
 }
 
 const handleComputerChange = e => {
-    const selectedComputer = computers[e.target.selectedIndex];
+    selectedComputer = computers[e.target.selectedIndex];
     featuresElement.innerHTML =selectedComputer.specs;
     priceElement.innerText = selectedComputer.price;
     descriptionElement.innerText = selectedComputer.description;
@@ -100,15 +102,17 @@ function work(){
 function getLoan(){
     return joe.loan;
 }
+/**
+ * Checks if user has sufficient funds
+ */
 function buy(){
     if (price<=getBalance()){
         joe.balance-=price;
+        alert("Thank you for your order, your "+selectedComputer.title+" is now beeing prepered for shipment.\nYour account will be charged shortly.");
         updateFields();
-        document.getElementById('buyOk').style.visibility='visible';
         document.getElementById('buyErrors').style.visibility='hidden';
     }
     else{
-        document.getElementById('buyOk').style.visibility='hidden';
         document.getElementById('buyErrors').style.visibility='visible';
     }
 
@@ -179,7 +183,6 @@ function updateFields(){
     document.getElementById('loan_id').textContent = getLoan()+" kr";
     document.getElementById('pay_id').textContent = getPay()+" kr";
     document.getElementById('buyErrors').style.visibility='hidden';
-    document.getElementById('buyOk').style.visibility='hidden';
 }
 
 
