@@ -2,17 +2,21 @@
 <html>
   <head>
     <link rel="stylesheet" href="style-main.css" />
-    <meta name="theme-color" content="#89917E">
+    <meta name="theme-color" content="#89917E" />
     <title>Komputer Store</title>
   </head>
+
   <body>
     <div class="grid">
       <header><h1>Komputer Store</h1></header>
+      
+      
       <section class="bank">
         <h2>Bank</h2>
         <div class="balanceDiv">
-        <p>Balance:</p>
-        <p id="balance_id"></p></div>
+          <p>Balance:</p>
+          <p id="balance_id"></p>
+        </div>
         <div id="loanDiv" class="loanDiv">
           <p>Loan:</p>
           <p id="loan_id"></p>
@@ -20,10 +24,13 @@
         <button onclick="loan()" class="loanButton">Get a loan</button>
       </section>
 
+
       <section class="work">
         <h2>Work</h2>
-        <div class="payDiv"><p>Pay</p>
-        <p id="pay_id"></p></div>
+        <div class="payDiv">
+          <p>Pay</p>
+          <p id="pay_id"></p>
+        </div>
         <button id="loanButton" onclick="repay()" class="repayButton">
           Repay loan</button
         ><br />
@@ -32,27 +39,28 @@
           <button onclick="work()" class="workButton">Work</button>
         </div>
       </section>
+
+
       <section class="laptops">
         <h2>Laptops</h2>
         <select name="Computers" , id="computers"></select>
-        <p id="features"></p>
+        <ul id="features"></ul>
       </section>
+
+
       <section class="store">
         <img id="computerImage" alt="There is no image of this cumputer..." />
-
         <div class="storeDiv">
           <h3 id="title"></h3>
           <p2 id="description"></p2>
         </div>
-
         <div class="buyDiv">
-          <p2 id="price"></p2><br>
+          <p2 id="price"></p2><br />
           <button id="buybutton" onclick="buy()" class="buyButton">Buy</button>
           <p id="buyErrors">Insufficient funds..</p>
-
         </div>
       </section>
-      <footer>@Vegard Gunnarson</footer>
+      <footer></footer>
     </div>
   </body>
   <script src="script-main.js"></script>
