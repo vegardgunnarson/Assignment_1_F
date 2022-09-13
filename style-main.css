@@ -6,7 +6,7 @@
 h1{
     color: white;
     font-family: 'Times New Roman', Times, serif;
-    padding-left: 5%;
+    padding-left: 11%;
 }
 h2{
     text-align: center;
@@ -62,7 +62,6 @@ h2{
     cursor: pointer;
     margin-top: 105px;
     margin-left: 95px;
-    
 }
 .repayButton{
     width: 100px;
@@ -114,12 +113,15 @@ h2{
 
 }
 header {
-    top: 0;
-    position:sticky;
+    position:absolute;
     grid-row: 1;
     grid-column: 1/4;
-    background-color: black;
+    background-color: #89917E;
     height: 80px;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
 }
 .bank {
     padding-top: 5%;

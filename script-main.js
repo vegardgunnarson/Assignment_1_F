@@ -101,7 +101,7 @@ function getLoan(){
     return joe.loan;
 }
 function buy(){
-    if (price<=joe.balance+joe.loan){
+    if (price<=getBalance()){
         joe.balance-=price;
         updateFields();
         document.getElementById('buyOk').style.visibility='visible';
@@ -162,6 +162,7 @@ function loan(){
         console.log("You already have loan");
     }else{
         joe.loan=amount;
+        joe.balance+=joe.loan;
         document.getElementById('loanDiv').style.visibility='visible';
         document.getElementById('loanButton').style.visibility='visible';
         updateFields();
@@ -172,7 +173,7 @@ function updateFields(){
     if(isNaN(joe.loan)){joe.loan=0;}
     if(!hasLoan()){document.getElementById('loanDiv').style.visibility='hidden';}
     if(!hasLoan()){document.getElementById('loanButton').style.visibility='hidden';}
-    document.getElementById('balance_id').textContent = (getLoan()+getBalance())+" kr";
+    document.getElementById('balance_id').textContent = getBalance()+" kr";
     document.getElementById('loan_id').textContent = getLoan()+" kr";
     document.getElementById('pay_id').textContent = getPay()+" kr";
     document.getElementById('buyErrors').style.visibility='hidden';
